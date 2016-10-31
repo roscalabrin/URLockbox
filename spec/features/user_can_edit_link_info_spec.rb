@@ -16,14 +16,15 @@ feature "User submit a new link" do
     click_link "Edit Link"
     expect(current_path).to eq edit_link_path(Link.last)
 
-    fill_in "Title", with: "EDITED"
-    fill_in "Url", with: "https://opensnow.com/"
-    save_and_open_page
-    click_button "Save"
-
+    within('.edit_link') do
+      fill_in :link_title, with: "EDITED"
+      fill_in :link_url, with: "https://opensnow.com/"
+      click_button "Save"
+    end
+    
     expect(current_path).to eq links_path
 
-    # expect(page).to have_content "snow forecastEDITED"
+    # expect(page).to have_content "EDITED"
     # expect(page).to have_content "https://opensnow.com/"
     # expect(page).to_not have_content "snow forecast"
   end
