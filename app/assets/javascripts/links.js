@@ -6,6 +6,7 @@ class Links {
   constructor() {
     this.updateReadStatusListener()
     this.searchListener()
+    this.filterListener()
   }
   
   updateReadStatusListener() {
@@ -18,11 +19,51 @@ class Links {
   searchListener() {
     $('#parent').on('keyup', '.search-links', (e) => {
       const criteria = $('.search-links').val()
-      this.filterLinks()
+      this.matchSearch()
     })
   }
   
-  filterLinks() {
+  filterListener() {
+    $('#parent').on('click', '.radio-inline', (e) => {
+      const filter = e.target.innerText
+      if (filter === "Show Read") {
+        this.filterRead()
+      } else if (filter === "Show Unread") {
+        this.filterUnread()
+      } else if (filter === "Show All") {
+        this.showAll()
+      }
+    })
+  }
+  
+  filterRead() {
+    const linksDiv = Array.from(document.getElementsByClassName('link-details'))
+    linksDiv.map(function(link) {
+      $(link).closest('.link-details').removeClass("hide")
+      if ($(link).find('.btn-read').text() === "Mark as Read") {
+        $(link).closest('.link-details').addClass("hide")
+      } 
+    })
+  }
+  
+  filterUnread() {
+    const linksDiv = Array.from(document.getElementsByClassName('link-details'))
+    linksDiv.map(function(link) {
+      $(link).closest('.link-details').removeClass("hide")
+      if ($(link).find('.btn-read').text() === "Mark as Unread") {
+        $(link).closest('.link-details').addClass("hide")
+      } 
+    })
+  }
+  
+  showAll() {
+    const linksDiv = Array.from(document.getElementsByClassName('link-details'))
+    linksDiv.map(function(link) {
+      $(link).closest('.link-details').removeClass("hide")
+    })
+  }
+  
+  matchSearch() {
     const titlesDiv = Array.from(document.getElementsByClassName('link-details'))
     titlesDiv.map(function(link) {
       const criteria = $('.search-links').val().toLowerCase()
@@ -42,7 +83,6 @@ class Links {
       success: response => success(response)
     })
     function success(data) {
-      console.log('hi')
       if (data.read) {
           $(`#link-container-${data.id}`).children()[2].innerHTML = 'Mark as Unread'
           
