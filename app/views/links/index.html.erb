@@ -1,20 +1,20 @@
 <div class="col-md-4">
   <%= render "links/new" %>
 
-  <h2>My Links</h2>
-  <% if @links %>
-    <% @links.each do |link| %>
-      <div class=link-container" data-id="<%= link.id %>">
-        <p><%= link.title %></p>
-        <p><%= link.url %></p>
-        <p>
-          <% if link.read %>
-            <button type="button" class="btn-read-<%= link.read %> btn btn-primary">Mark as Unread</button>
-          <% else %>
-            <button type="button" class="btn-read-<%= link.read %> btn btn-primary">Mark as Read</button>
-          <% end %>
-        </p>
-      </div>
+  <div class="all-links">
+    <h2>My Links</h2>
+    <% if @links %>
+      <% @links.each do |link| %>
+        <div id="link-container-<%= link.id %>" data-id="<%= link.id %>">
+          <p><%= link.title %></p>
+          <p><%= link.url %></p>  
+            <% if link.read %>
+              <button type="button" class="btn-read-<%= link.read %> btn btn-primary">Mark as Unread</button>
+            <% else %>
+              <button type="button" class="btn-read-<%= link.read %> btn btn-primary">Mark as Read</button>
+            <% end %>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
