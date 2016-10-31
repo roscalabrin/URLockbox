@@ -5,6 +5,7 @@ $(document).ready( () => {
 class Links {
   constructor() {
     this.updateReadStatusListener()
+    this.searchListener()
   }
   
   updateReadStatusListener() {
@@ -13,6 +14,26 @@ class Links {
       this.updateReadStatus(linkId)
     })
   }
+  
+  searchListener() {
+    $('#parent').on('keyup', '.search-links', (e) => {
+      const criteria = $('.search-links').val()
+      this.filterLinks()
+    })
+  }
+  
+  filterLinks() {
+    const titlesDiv = Array.from(document.getElementsByClassName('link-details'))
+    titlesDiv.map(function(link) {
+      const criteria = $('.search-links').val().toLowerCase()
+      if ($(link).text().toLowerCase().trim().includes(criteria)) {
+        $(link).closest('.link-details').removeClass("hide")
+      } else {
+        $(link).closest('.link-details').removeClass("hide")
+        $(link).closest('.link-details').addClass("hide")
+      }
+    })
+  }    
   
   updateReadStatus(linkId) {
     $.ajax({
