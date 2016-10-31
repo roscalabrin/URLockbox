@@ -4,34 +4,21 @@ $(document).ready( () => {
 
 class Links {
   constructor() {
-    this.updateReadStatusListenerOne()
-    this.updateReadStatusListenerTwo()
+    this.updateReadStatusListener()
   }
   
-  updateReadStatusListenerOne() {
-    $('#parent').on('click', '.btn-read-false', (e) => {
+  updateReadStatusListener() {
+    $('#parent').on('click', '.btn-read', (e) => {
       const linkId = e.target.parentNode.dataset.id
-      const newStatus = "true"
-      this.updateReadStatus(linkId, newStatus)
-      this.updateReadStatusListenerTwo()
+      // const newStatus = "true"
+      this.updateReadStatus(linkId)
     })
   }
   
-  updateReadStatusListenerTwo() {
-    $('#parent').on('click', '.btn-read-true', (e) => {
-      const linkId = e.target.parentNode.dataset.id
-      const newStatus = "false"
-      const button = e.target
-      this.updateReadStatus(linkId, newStatus)
-      this.updateReadStatusListenerOne()
-    })
-  }
-  
-  updateReadStatus(linkId, newStatus) {
+  updateReadStatus(linkId) {
     $.ajax({
       type: "PUT",
       url: `api/v1/links/${linkId}`,
-      data: {status: newStatus},
       success: response => success(response)
     })
     function success(data) {
