@@ -1,13 +1,13 @@
 
-<div class="col-md-4">
+<div class="col-md-6 col-md-offset-3">
   <%= render "links/new" %>
-
+  <hr>
   <div class="search-form">
     <input type="text" name="search" class="search-links" placeholder="Search Links"> 
   </div>
   
   <div class="all-links">
-    <h2>My Links</h2>
+    <h3>My Links</h3>
     <% if @links %>
       <% @links.each do |link| %>
         <div id="link-container-<%= link.id %>" class="link-details" data-id="<%= link.id %>">
@@ -20,6 +20,7 @@
             <% end %>
             <%= link_to "Edit Link", edit_link_path(link), method: :get %> 
         </div>
+        <br />
       <% end %>
     <% end %>
   </div>

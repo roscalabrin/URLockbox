@@ -1,3 +1,13 @@
+#parent {
+  text-align: center;
+}
+
 .hide {
   display: none;
 }
+
+.navbar > p {
+  margin-top: 10px;
+  float: right;
+}
+

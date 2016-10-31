@@ -10,9 +10,11 @@
 
   <body>
     <div id="parent" class="container">
-      <% if current_user %>
-        <%= link_to "Sign Out", logout_path, method: :delete %>
-      <% end %>
+      <div class="navbar">
+        <% if current_user %>
+          <p><%= link_to "Sign Out", logout_path, method: :delete %></p>
+        <% end %>
+      </div>
       
       <div class="container-fluid">
       <% flash.each do |type, message| %>
