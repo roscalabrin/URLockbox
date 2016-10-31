@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+
+    <div class="form-body col-sm-12 col-md-12">
+  
+      <h2>New Account</h2>
+
+      <%= form_for @user do |f| %>
+        
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, class: "form-control" %>
+        </div>
+        <br />
+        
+        <div class="field">
+          <%= f.label :password %>
+          <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+        </div>
+        <br />
+
+        <div class="field">
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+        </div>
+        <br />
+
+        <div class="actions">
+          <%= f.submit "Sign Up", class: "btn btn-primary btn-md btn-block" %>
+        </div>
+      <% end %>
+      <br />
+      
+    </div>
+  </div>
+</div>
