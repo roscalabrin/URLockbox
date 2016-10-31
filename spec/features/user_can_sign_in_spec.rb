@@ -2,18 +2,18 @@ require 'rails_helper'
 
 feature "User can sign in" do
   before do
-    user = User.create(email: "roberta@example.com", password: "password")
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    User.create(email: "roberta@example.com", password: "password")
   end
-  scenario "user submits a link with valid information and sees it on their links page" do
-    visit links_path
+  scenario "user provides valid login information" do
+    visit root_path
+    click_link "Sign In"
     
-    fill_in :link_title, with: "snow forecast"
-    fill_in :link_url, with: "https://opensnow.com/"
-    click_button "Create Link"
+    expect(current_path).to eq login_path
+    fill_in :session_email, with: "roberta@example.com"
+    fill_in :session_password, with: "password"
+    click_button "Sign In"
 
     expect(current_path).to eq links_path
-    expect(page).to have_content "snow forecast"
-    expect(page).to have_content "https://opensnow.com/"
+    expect(page).to have_content "Sign Out"
   end
 end
