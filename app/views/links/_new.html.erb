@@ -3,14 +3,12 @@
 <%= form_for Link.new do |f|  %>
   
   <div class="form-group">
-    <%= f.label :title %><br />
-    <%= f.text_field :title, autofocus: true, class: "form-control" %>
+    <%= f.text_field :title, autofocus: true, placeholder: "Title", class: "form-control" %>
   </div>
   
   <div class="form-group">
-    <%= f.label :url %>
-    <p>Link must begin with "http://" or "https://"</p>
-    <%= f.text_field :url, autofocus: true, class: "form-control" %>
+    <em><p class="url-format">Link url must begin with "http://" or "https://"</p></em>
+    <%= f.text_field :url, autofocus: true, placeholder: "URL", class: "form-control" %>
   </div>
 
   <div class="actions">
