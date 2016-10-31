@@ -10,7 +10,6 @@ class Links {
   updateReadStatusListener() {
     $('#parent').on('click', '.btn-read', (e) => {
       const linkId = e.target.parentNode.dataset.id
-      // const newStatus = "true"
       this.updateReadStatus(linkId)
     })
   }
