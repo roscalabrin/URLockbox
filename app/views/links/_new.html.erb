@@ -1,0 +1,22 @@
+<h2>Add a new link</h2>
+
+<%= form_for Link.new do |f|  %>
+  
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title, autofocus: true, class: "form-control" %>
+  </div>
+  <br />
+  
+  <div class="field">
+    <%= f.label :url %>
+    <p>Link must begin with "http://" or "https://"</p>
+    <%= f.text_field :url, autofocus: true, class: "form-control" %>
+  </div>
+  <br />
+
+  <div class="actions">
+    <%= f.submit "Create Link", class: "btn btn-primary" %>
+  </div>
+<% end %>
+<br />
