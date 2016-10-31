@@ -8,8 +8,8 @@ feature "User can sign in" do
   scenario "user submits a link with valid information and sees it on their links page" do
     visit links_path
     
-    fill_in :title, with: "snow forecast"
-    fill_in :url, with: "https://opensnow.com/"
+    fill_in :link_title, with: "snow forecast"
+    fill_in :link_url, with: "https://opensnow.com/"
     click_button "Create Link"
 
     expect(current_path).to eq links_path

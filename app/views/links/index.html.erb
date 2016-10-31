@@ -1,0 +1,33 @@
+<h1>My Links</h1>
+
+<% if @links %>
+  <% @links.each do |link| %>
+    <p><%= link.title %></p>
+    <p><%= link.url %></p>
+    <br />
+  <% end %>
+<% end %>
+
+<h2>Submit a new link</h2>
+
+<%= form_for Link.new do |f|  %>
+  
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title, autofocus: true, class: "form-control" %>
+  </div>
+  <br />
+  
+  <div class="field">
+    <%= f.label :url %>
+    <p>Link must begin with "http://" or "https://"</p>
+    <%= f.text_field :url, autofocus: true, class: "form-control" %>
+  </div>
+  <br />
+
+  <div class="actions">
+    <%= f.submit "Create Link", class: "btn btn-primary btn-md btn-block" %>
+  </div>
+<% end %>
+<br />
+
