@@ -1,6 +1,11 @@
+
 <div class="col-md-4">
   <%= render "links/new" %>
 
+  <div class="search-form">
+    <input type="text" name="search" class="search-idea" placeholder="Search Links"> 
+  </div>
+  
   <div class="all-links">
     <h2>My Links</h2>
     <% if @links %>
