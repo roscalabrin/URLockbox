@@ -10,10 +10,8 @@ feature "User views list of links in alphabetical order" do
   
   scenario "user adds link and views the list in alphabetical order" do
     visit links_path
-    
 
-    click_button("Sort Links Alphabetically")
-
+    click_button "Sort Link Titles Alphabetically"
   end
 end
   

@@ -6,7 +6,7 @@ describe "User can search links", type: :feature, js: true do
     link1 = create(:link, title: "weather forecast", user_id: user.id)
     link2 = create(:link, title: "restaurants", user_id: user.id)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-    visit root_path
+    visit links_path
   end
   
   it "shows only links that fit the search criteria" do
