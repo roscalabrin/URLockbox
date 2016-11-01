@@ -1,24 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Mod4 Assessment (URLockbox)
 
-Things you may want to cover:
+This app was created for the Module 4 assessment for Turing School of Software & Design.
+It combines a rails back-end, a PostgreSQL database, DOM manipulation, and AJAX requests.
 
-* Ruby version
+### Repository Setup
+The production app lives on [Heroku](https://turing-url-lockbox.herokuapp.com/)
 
-* System dependencies
+To run locally:
 
-* Configuration
+Clone this repository to your local machine, cd into the project directory
 
-* Database creation
+Bundle: `bundle`
 
-* Database initialization
+Set up database: `rake db:{create,migrate}`
 
-* How to run the test suite
+Run the test suit: `rspec`
 
-* Services (job queues, cache servers, search engines, etc.)
+Run the Server: `rails s`
 
-* Deployment instructions
-
-* ...
+In your browsers, navigate to: `localhost:3000`

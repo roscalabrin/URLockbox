@@ -7,14 +7,8 @@ class Links {
     this.updateReadStatusListener()
     this.searchListener()
     this.filterListener()
-    this.sortAlphabeticallyListener()
+    // this.sortAlphabeticallyListener()
   }
-  
-  sortAlphabeticallyListener () {
-    $('#sort-alphabetically').on('click', function () {
-    })
-  }
-
   
   updateReadStatusListener() {
     $('#parent').on('click', '.btn-read', (e) => {
