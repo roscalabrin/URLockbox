@@ -3,4 +3,13 @@ require_relative 'application'
 
 # Initialize the Rails application.
 Rails.application.initialize!
-# ActionMailer::Base.default_content_type = "text/html"
+
+ActionMailer::Base.smtp_settings = {
+  :user_name => ENV["SENDGRID_USER_NAME"],
+  :password => ENV["SENDGRID_PASSWORD"],
+  :domain => 'turing-url-lockbox.herokuapp.com',
+  :address => 'smtp.sendgrid.net',
+  :port => 587,
+  :authentication => :plain,
+  :enable_starttls_auto => true
+}
