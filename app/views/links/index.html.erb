@@ -11,11 +11,11 @@
       <div id="link-container-<%= link.id %>" class="link-details" data-id="<%= link.id %>">
         <% if link.read %>
           <h4 class='orange'><%= link.title %></h4>
-          <p class='orange'><%= link.url %></p>
+          <p class='orange'><%= link_to link.url, link.url %></p>
           <button type="button" class="btn-read btn btn-primary">Mark as Unread</button>
         <% else %>
           <h4 class='black'><%= link.title %></h4>
-          <p class='black'><%= link.url %></p>
+          <p class='black'><%= link_to link.url, link.url %></p>
             <button type="button" class="btn-read btn btn-primary">Mark as Read</button>
         <% end %>
           <%= link_to "Edit Link", edit_link_path(link), method: :get %> 
