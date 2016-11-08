@@ -94,8 +94,8 @@ class Links {
       success: response => success(response)
     })
     function success(data) {
-      const text = document.getElementById(`link-container-${data.id}`).getElementsByTagName('p')[0]
-      const link = document.getElementById(`link-container-${data.id}`).getElementsByTagName('p')[1]
+      var text = document.getElementById(`link-container-${data.id}`).getElementsByTagName('h4')[0]
+      var link = document.getElementById(`link-container-${data.id}`).getElementsByTagName('p')[0]
       if (data.read) {
         document.getElementById(`link-container-${data.id}`).getElementsByTagName('button')[0].innerHTML = 'Mark as Unread'
         text.className = 'orange'
