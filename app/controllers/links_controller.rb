@@ -10,10 +10,7 @@ class LinksController < ApplicationController
     @link = current_user.links.new(link_params)
     if @link.save
       flash[:success] = "Your link was added!"
-      if @email
-        NotifierMailer.link_notify(@link.url, @email).deliver_now
-        flash[:success] = "Your link was added and the email was sent!"
-      end
+      send_email?
       redirect_to links_path
     else
       flash[:alert] = @link.errors.full_messages.join(", ")
@@ -51,6 +48,13 @@ class LinksController < ApplicationController
       unless current_user
         flash[:alert] = "Please login to view this page!"
         redirect_to login_path
+      end
+    end
+    
+    def send_email?
+      if @email
+        NotifierMailer.link_notify(@link.url, @email).deliver_now
+        flash[:success] = "Your link was added and the email was sent!"
       end
     end
 end

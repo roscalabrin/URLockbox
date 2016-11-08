@@ -14,19 +14,21 @@ feature "User submit a new link" do
     expect(page).to have_content "https://opensnow.com/"
     
     click_link "Edit Link"
-    expect(current_path).to eq edit_link_path(Link.last)
-
-    within('.edit_link') do
-      fill_in :link_title, with: "EDITED"
-      fill_in :link_url, with: "https://opensnow.com/"
-      click_button "Save"
-    end
     
-    expect(current_path).to eq links_path
+    expect(current_path).to eq edit_link_path(Link.last)
+    expect(page).to have_content('Edit Link')
+    
+    expect(page).to have_field "Title", with: "snow forecast"
+    expect(page).to have_field "Url", with: "https://opensnow.com/"
 
-    # expect(page).to have_content "EDITED"
-    # expect(page).to have_content "https://opensnow.com/"
-    # expect(page).to_not have_content "snow forecast"
+    fill_in "link_title", with: "EDITED"
+    fill_in "link_url", with: "https://opensnow.com/"
+    click_on "Save"
+
+    expect(current_path).to eq links_path
+    link = Link.last
+    expect(link.title).to eq "EDITED"
+    expect(link.url).to eq "https://opensnow.com/"
   end
   
   scenario "user cannot edit a link with a bad URL" do
