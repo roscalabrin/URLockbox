@@ -12,9 +12,9 @@ class Links {
   
   sortAlphabeticallyListener() {
     $('#sort-alphabetically').on('click', () => {
-      const $divs = $("div.link-details");
+      const $divs = $("div.link-details")
       const alphabeticallyOrderedDivs = $divs.sort(function (a, b) {
-        return $(a).find("h4").text() > $(b).find("h4").text();
+        $(a).find("h4").text() > $(b).find("h4").text();
       })
       $(".all-links").html(alphabeticallyOrderedDivs);
     })
