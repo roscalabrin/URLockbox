@@ -4,12 +4,12 @@ class UsersController < ApplicationController
   end
   
   def create
-    user = User.new(user_params)
-    if user.save
-      session[:user_id] = user.id
+    @user = User.new(user_params)
+    if @user.save
+      session[:user_id] = @user.id
       redirect_to links_path
     else
-      flash.now[:danger] = @user.errors.full_messages.join(", ")
+      flash.now[:danger] = @user.errors.full_messages.join()
       render :new
     end
   end

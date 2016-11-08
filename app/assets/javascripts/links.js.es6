@@ -7,9 +7,19 @@ class Links {
     this.updateReadStatusListener()
     this.searchListener()
     this.filterListener()
-    // this.sortAlphabeticallyListener()
+    this.sortAlphabeticallyListener()
   }
   
+  sortAlphabeticallyListener() {
+    $('#sort-alphabetically').on('click', () => {
+      const $divs = $("div.link-details")
+      const alphabeticallyOrderedDivs = $divs.sort(function (a, b) {
+        $(a).find("h4").text() > $(b).find("h4").text();
+      })
+      $(".all-links").html(alphabeticallyOrderedDivs);
+    })
+  }
+   
   updateReadStatusListener() {
     $('#parent').on('click', '.btn-read', (e) => {
       const linkId = e.target.parentNode.dataset.id
@@ -84,11 +94,16 @@ class Links {
       success: response => success(response)
     })
     function success(data) {
+      var text = document.getElementById(`link-container-${data.id}`).getElementsByTagName('h4')[0]
+      var link = document.getElementById(`link-container-${data.id}`).getElementsByTagName('p')[0]
       if (data.read) {
-          $(`#link-container-${data.id}`).children()[2].innerHTML = 'Mark as Unread'
-          
+        document.getElementById(`link-container-${data.id}`).getElementsByTagName('button')[0].innerHTML = 'Mark as Unread'
+        text.className = 'orange'
+        link.className = 'orange'
       } else {
-          $(`#link-container-${data.id}`).children()[2].innerHTML = 'Mark as Read'
+        document.getElementById(`link-container-${data.id}`).getElementsByTagName('button')[0].innerHTML = 'Mark as Read'
+        text.className = 'black'
+        link.className = 'black'
       }    
     }
   }

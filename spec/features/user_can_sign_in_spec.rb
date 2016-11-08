@@ -16,4 +16,15 @@ feature "User can sign in" do
     expect(current_path).to eq links_path
     expect(page).to have_content "Sign Out"
   end
+
+  scenario "user provides invalid information" do
+    visit root_path
+    click_link "Sign In"
+    fill_in :session_email, with: "roberta@example.com"
+    fill_in :session_password, with: "xxx"
+    click_button "Sign In"
+
+    expect(current_path).to eq login_path
+    expect(page).to have_content "Invalid username or password. Try Again."
+  end
 end

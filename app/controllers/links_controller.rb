@@ -1,5 +1,6 @@
 class LinksController < ApplicationController
   before_action :authorize
+  attr_reader :email
   
   def index
     @links = current_user.links
@@ -9,6 +10,10 @@ class LinksController < ApplicationController
     @link = current_user.links.new(link_params)
     if @link.save
       flash[:success] = "Your link was added!"
+      if @email
+        NotifierMailer.link_notify(@link.url, @email).deliver_now
+        flash[:success] = "Your link was added and the email was sent!"
+      end
       redirect_to links_path
     else
       flash[:alert] = @link.errors.full_messages.join(", ")
@@ -34,7 +39,12 @@ class LinksController < ApplicationController
   private
   
     def link_params
-      params.require(:link).permit(:title, :url, :read)
+      user_input = params.require(:link).permit(:title, :url, :read)
+      if user_input["url"].include?("\\")
+        @email = user_input[:url].split("\\").second.split("cc:").second.strip
+        user_input["url"] = user_input[:url].split("\\").first.strip
+      end
+      user_input
     end
     
     def authorize
