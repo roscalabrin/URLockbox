@@ -7,9 +7,19 @@ class Links {
     this.updateReadStatusListener()
     this.searchListener()
     this.filterListener()
-    // this.sortAlphabeticallyListener()
+    this.sortAlphabeticallyListener()
   }
   
+  sortAlphabeticallyListener() {
+    $('#sort-alphabetically').on('click', () => {
+      const $divs = $("div.link-details");
+      const alphabeticallyOrderedDivs = $divs.sort(function (a, b) {
+        return $(a).find("h4").text() > $(b).find("h4").text();
+      })
+      $(".all-links").html(alphabeticallyOrderedDivs);
+    })
+  }
+   
   updateReadStatusListener() {
     $('#parent').on('click', '.btn-read', (e) => {
       const linkId = e.target.parentNode.dataset.id
