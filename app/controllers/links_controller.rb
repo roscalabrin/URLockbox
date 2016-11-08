@@ -53,6 +53,8 @@ class LinksController < ApplicationController
     
     def send_email?
       if @email
+        require "pry"
+        binding.pry
         NotifierMailer.link_notify(@link.url, @email).deliver_now
         flash[:success] = "Your link was added and the email was sent!"
       end
