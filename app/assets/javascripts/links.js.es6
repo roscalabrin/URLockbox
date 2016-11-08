@@ -84,11 +84,16 @@ class Links {
       success: response => success(response)
     })
     function success(data) {
+      const text = document.getElementById(`link-container-${data.id}`).getElementsByTagName('p')[0]
+      const link = document.getElementById(`link-container-${data.id}`).getElementsByTagName('p')[1]
       if (data.read) {
-          $(`#link-container-${data.id}`).children()[2].innerHTML = 'Mark as Unread'
-          
+        document.getElementById(`link-container-${data.id}`).getElementsByTagName('button')[0].innerHTML = 'Mark as Unread'
+        text.className = 'orange'
+        link.className = 'orange'
       } else {
-          $(`#link-container-${data.id}`).children()[2].innerHTML = 'Mark as Read'
+        document.getElementById(`link-container-${data.id}`).getElementsByTagName('button')[0].innerHTML = 'Mark as Read'
+        text.className = 'black'
+        link.className = 'black'
       }    
     }
   }
